@@ -13,11 +13,12 @@ class GameViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(GameUiState())
     val uiState: StateFlow<GameUiState> = _uiState.asStateFlow()
 
+    private var usedWords = mutableSetOf<String>()
+
     init {
         resetGame()
     }
 
-    private var usedWords = mutableSetOf<String>()
     private fun pickRandomWordAndShuffle(): String {
         currentWord = allWords.random()
         while (usedWords.contains(currentWord)) {
